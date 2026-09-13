@@ -1,36 +1,85 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="OvalOasis Poultry Inventory — flock records, daily production, feed, finances, suppliers and reports in one farm management app.">
-<title>OvalOasis | Poultry Inventory Management</title>
-<style>
-:root{--g:#087a4f;--d:#123126;--m:#61736b;--bg:#f5faf7;--l:#dce9e2}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--d);background:var(--bg);line-height:1.6}a{text-decoration:none;color:inherit}.w{width:min(1120px,calc(100% - 40px));margin:auto}
-header{position:sticky;top:0;z-index:5;background:#f5faf7ee;backdrop-filter:blur(12px);border-bottom:1px solid var(--l)}nav{height:72px;display:flex;align-items:center;justify-content:space-between}.brand{font-size:22px;font-weight:850;color:var(--g)}.links{display:flex;gap:28px;color:#4f635b;font-size:14px;font-weight:650}.btn{display:inline-flex;padding:12px 19px;border-radius:12px;background:var(--g);color:white;font-weight:750}.soft{background:#e7f3ed;color:var(--g)}
-.hero{padding:90px 0 75px;background:radial-gradient(circle at 85% 20%,#d8f2e5 0,transparent 34%),linear-gradient(135deg,#f7fcf9,#e9f6f0)}.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:center}.ey{display:inline-block;padding:7px 11px;border-radius:999px;background:#dff2e8;color:var(--g);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.hero h1{font-size:clamp(42px,6vw,70px);line-height:1.02;letter-spacing:-3px;margin:18px 0}.hero p{font-size:19px;color:var(--m);max-width:680px}.actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}.mock{background:white;border:1px solid var(--l);border-radius:28px;padding:20px;box-shadow:0 25px 60px #12312618}.mocktop{height:190px;border-radius:20px;background:linear-gradient(145deg,#0c8b5c,#075d42);display:grid;place-items:center;color:white;text-align:center}.mocktop strong{font-size:28px;display:block}.stats{padding-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}.stat{border:1px solid var(--l);border-radius:14px;padding:14px}.stat b{font-size:18px}.stat small{display:block;color:var(--m)}
-section{padding:82px 0}.head{text-align:center;max-width:700px;margin:0 auto 44px}.head h2{font-size:38px;letter-spacing:-1.5px;margin:0 0 10px}.head p{color:var(--m)}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:white;border:1px solid var(--l);border-radius:20px;padding:26px}.icon{font-size:25px;margin-bottom:12px}.card h3{margin:0 0 8px}.card p{margin:0;color:var(--m);font-size:14px}
-.band{background:var(--d);color:white}.band p{color:#c6d8d0}.bandgrid{display:flex;justify-content:space-between;align-items:center;gap:30px}.band h2{font-size:34px;line-height:1.15}.steps{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:25px}.step{background:white;color:var(--d);border-radius:16px;padding:18px}.step span{color:var(--m);font-size:13px}
-.footer{padding:35px 0;border-top:1px solid var(--l);color:var(--m);font-size:13px}.foot{display:flex;justify-content:space-between;gap:20px}.foot a{color:var(--g);font-weight:700}
-@media(max-width:800px){.links{display:none}.hero{padding:65px 0}.grid,.features{grid-template-columns:1fr}.bandgrid,.foot{flex-direction:column;align-items:flex-start}.steps{grid-template-columns:1fr}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OvalOasis - Poultry Inventory Management</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f7f9fa;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e1e4e8;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            color: #d32f2f;
+            font-size: 2rem;
+        }
+        main {
+            flex: 1;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #d32f2f;
+            color: #ffffff;
+            padding: 12px 24px;
+            margin: 20px 0;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+        .cta-button:hover {
+            background-color: #b71c1c;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #666;
+            border-top: 1px solid #e1e4e8;
+            background-color: #ffffff;
+        }
+    </style>
 </head>
 <body>
-<header><nav class="w"><a class="brand" href="#top">OvalOasis</a><div class="links"><a href="#features">Features</a><a href="#workflow">How it works</a><a href="#about">About</a></div><a class="btn" href="https://app.ovaloasis.in">Open App</a></nav></header>
-<main id="top">
-<section class="hero"><div class="w grid"><div><span class="ey">Poultry farm management</span><h1>Run your poultry operation with clarity.</h1><p>OvalOasis Poultry Inventory brings flock records, daily production, feed, finances, suppliers and reports together in one simple farm management app.</p><div class="actions"><a class="btn" href="https://app.ovaloasis.in">Open Poultry Inventory</a><a class="btn soft" href="#features">Explore features</a></div></div><div class="mock"><div class="mocktop"><div><strong>OvalOasis</strong>Farm dashboard</div></div><div class="stats"><div class="stat"><b>🐔 Flock</b><small>Birds &amp; mortality</small></div><div class="stat"><b>🥚 Eggs</b><small>Daily production</small></div><div class="stat"><b>📦 Feed</b><small>Usage tracking</small></div><div class="stat"><b>📊 Reports</b><small>Farm insights</small></div></div></div></div></section>
-<section id="features"><div class="w"><div class="head"><h2>Everything important, in one place.</h2><p>Designed around the everyday records a poultry farm needs to maintain and review.</p></div><div class="features">
-<div class="card"><div class="icon">🐔</div><h3>Flock Management</h3><p>Keep flock information organized and follow bird counts through the production cycle.</p></div>
-<div class="card"><div class="icon">🥚</div><h3>Daily Production</h3><p>Record trays, total eggs, average tray weight, mortality, feed, grit and water with calculated values.</p></div>
-<div class="card"><div class="icon">💰</div><h3>Expenses &amp; Earnings</h3><p>Track farm financial transactions with structured categories, subcategories and accounts.</p></div>
-<div class="card"><div class="icon">📦</div><h3>Suppliers</h3><p>Maintain a practical supplier directory for everyday farm operations.</p></div>
-<div class="card"><div class="icon">📈</div><h3>Reports</h3><p>Turn recorded farm data into useful operational and financial insights.</p></div>
-<div class="card"><div class="icon">🥚</div><h3>Egg Market Prices</h3><p>View daily egg market rates for configured markets while provider credentials remain server-side.</p></div>
-</div></div></section>
-<section id="workflow" class="band"><div class="w"><div class="bandgrid"><div><h2>A simple daily workflow.</h2><p>Capture the numbers that matter, keep records consistent, and review farm performance when you need it.</p></div><a class="btn" href="https://app.ovaloasis.in">Start using the app</a></div><div class="steps"><div class="step"><b>1. Sign in securely</b><br><span>Use your farm account and Firebase authentication.</span></div><div class="step"><b>2. Record the day</b><br><span>Log birds, mortality, eggs, feed, grit and water.</span></div><div class="step"><b>3. Track finances</b><br><span>Keep operational expenses and earnings organized.</span></div><div class="step"><b>4. Review reports</b><br><span>Use accumulated records to understand performance.</span></div></div></div></section>
-<section id="about"><div class="w"><div class="head"><h2>Built for practical farm operations.</h2><p>OvalOasis is focused on reducing scattered spreadsheets and manual records by giving poultry teams a shared, structured place for daily farm information.</p><div class="actions" style="justify-content:center"><a class="btn" href="https://app.ovaloasis.in">Open the application</a></div></div></div></section>
-</main>
-<footer class="footer"><div class="w foot"><div>© 2026 OvalOasis. Poultry Inventory Management.</div><div><a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms &amp; Conditions</a></div></div></footer>
+    <header>
+        <h1>OvalOasis</h1>
+    </header>
+    <main>
+        <h2>Poultry Inventory App</h2>
+        <p>A secure, efficient, and robust solution for modern poultry farm tracking, flock logs, sales, and expense records.</p>
+        <p>Manage your birds, track daily metrics, analyze benchmarks, and export your data safely.</p>
+        
+        <a href="https://app.ovaloasis.in" class="cta-button">Launch Web App</a>
+        
+        <div style="margin-top: 30px;">
+            <h3>Download Android App</h3>
+            <p>Get the latest official Android APK from our GitHub distribution repository releases:</p>
+            <a href="https://github.com/amzy/PoultryInventory-App/releases" style="color: #d32f2f; font-weight: bold; text-decoration: underline;">Browse Releases</a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 OvalOasis. All rights reserved.</p>
+    </footer>
 </body>
 </html>
