@@ -5,8 +5,7 @@ on:
     branches:
       - main
     paths:
-      - '.deploy/source-trigger'
-      - '.github/workflows/deploy-website.yml'
+      - '**'
   workflow_dispatch:
 
 permissions:
@@ -20,41 +19,25 @@ concurrency:
 
 jobs:
   deploy-website:
-    name: Build and Deploy Website
+    name: Deploy committed Website
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - name: Checkout public Website repository
         uses: actions/checkout@v4
 
-      - name: Read private source commit
-        id: source
-        shell: bash
+      - name: Verify website
         run: |
-          SOURCE_REF=$(sed -n 's/^source=//p' .deploy/source-trigger | head -n 1)
-          test -n "$SOURCE_REF"
-          echo "ref=$SOURCE_REF" >> "$GITHUB_OUTPUT"
-
-      - name: Checkout private source repository
-        uses: actions/checkout@v4
-        with:
-          repository: amzy/PoultryInventory
-          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
-          path: source
-          ref: ${{ steps.source.outputs.ref }}
+          test -f index.html
+          test -f CNAME
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Prepare Website artifact
-        working-directory: source
-        run: |
-          printf 'www.ovaloasis.in\n' > website/CNAME
-
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: source/website
+          path: .
 
       - name: Deploy to GitHub Pages
         id: deployment
