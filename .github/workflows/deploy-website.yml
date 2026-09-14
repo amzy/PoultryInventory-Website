@@ -27,20 +27,29 @@ jobs:
       - name: Checkout public Website repository
         uses: actions/checkout@v4
 
+      - name: Read private source commit
+        id: source
+        shell: bash
+        run: |
+          SOURCE_REF=$(sed -n 's/^source=//p' .deploy/source-trigger | head -n 1)
+          test -n "$SOURCE_REF"
+          echo "ref=$SOURCE_REF" >> "$GITHUB_OUTPUT"
+
       - name: Checkout private source repository
         uses: actions/checkout@v4
         with:
           repository: amzy/PoultryInventory
           token: ${{ secrets.PRIVATE_REPO_TOKEN }}
           path: source
-          ref: main
+          ref: ${{ steps.source.outputs.ref }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Prepare Website artifact
+        working-directory: source
         run: |
-          printf 'www.ovaloasis.in\n' > source/website/CNAME
+          printf 'www.ovaloasis.in\n' > website/CNAME
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
