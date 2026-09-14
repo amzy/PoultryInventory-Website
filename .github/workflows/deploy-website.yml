@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'website/**'
+      - '.deploy/source-trigger'
       - '.github/workflows/deploy-website.yml'
   workflow_dispatch:
 
@@ -20,19 +20,32 @@ concurrency:
 
 jobs:
   deploy-website:
-    name: Deploy Website to Pages
+    name: Build and Deploy Website
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-      - name: Checkout Public Repo
+      - name: Checkout public Website repository
         uses: actions/checkout@v4
+
+      - name: Checkout private source repository
+        uses: actions/checkout@v4
+        with:
+          repository: amzy/PoultryInventory
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: source
+          ref: main
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload Pages Artifact
+      - name: Prepare Website artifact
+        run: |
+          printf 'www.ovaloasis.in\n' > source/website/CNAME
+
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: website
+          path: source/website
 
       - name: Deploy to GitHub Pages
         id: deployment
